@@ -3,7 +3,7 @@ import pandas as pd
 
 # 1. 頁面設定
 st.set_page_config(page_title="李兆基小學 5月報更管理", layout="wide")
-st.title("🏫 李兆基小學 - 導師報更看板")
+st.title("🏫 元創 - 導師報更看板")
 
 # 在側邊欄增加學校選擇
 school = st.sidebar.selectbox("切換學校", ["惇裕小學", "李兆基小學", "寶覺小學", "培恩小學"])
