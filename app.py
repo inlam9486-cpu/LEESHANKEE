@@ -16,7 +16,7 @@ if st.sidebar.button("🔄 立即同步最新資料"):
 # 選擇學校選單
 school = st.sidebar.selectbox("請選擇學校", ["培恩小學", "李兆基小學", "寶覺小學", "惇裕小學"])
 
-# 2. 學校資料庫 (已完全整合你提供的所有最新連結)
+# 2. 學校資料庫 (已完全整合你提供的所有獨立新連結)
 config = {
     "培恩小學": {
         "id": "1GvoiEZ2Qk-To9rojnjxVNHvF9wdxT386yVa-KD1v0oI", 
@@ -64,7 +64,7 @@ try:
     st.caption(f"數據最後同步時間：{time.strftime('%H:%M:%S')}")
 
     # 主畫面分頁
-    tab1, tab2 = st.tabs(["🗓️ 每日概覽", "👤 個人統計"])
+    tab1, tab2 = st.tabs(["🗓️ 每日概覽", "👤 導師個人統計"])
 
     with tab1:
         if date_cols:
@@ -94,4 +94,5 @@ try:
             st.info("該導師本月尚未有報更紀錄。")
 
 except Exception as e:
-    st.
+    st.error("🚨 資料讀取失敗")
+    st.info("原因可能：\n1. 該學校的試算表尚未開啟『知道連結的人即可檢視』權限。\n2. 若剛調整完權限，請點擊左側『🔄 立即同步最新資料』按鈕重試。")
