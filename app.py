@@ -14,10 +14,14 @@ if st.sidebar.button("🔄 立即同步最新資料"):
     st.rerun()
 
 # 選擇學校選單
-school = st.sidebar.selectbox("請選擇學校", ["培恩小學", "李兆基小學", "寶覺小學", "惇裕小學"])
+school = st.sidebar.selectbox("請選擇學校", ["惇裕小學", "培恩小學", "李兆基小學", "寶覺小學"])
 
-# 2. 學校資料庫 (已完全整合你提供的所有獨立新連結)
+# 2. 學校資料庫 (已完全整合你提供的所有最新獨立連結)
 config = {
+    "惇裕小學": {
+        "id": "19vimBn6Zw2dRod0Do5vCTYgjM8G0GL_HS5fYmfz_Q5Y", 
+        "gid": "0"
+    },
     "培恩小學": {
         "id": "1GvoiEZ2Qk-To9rojnjxVNHvF9wdxT386yVa-KD1v0oI", 
         "gid": "941462524"
@@ -29,10 +33,6 @@ config = {
     "寶覺小學": {
         "id": "18eAOSQJDRgmK3zgCXGXAwp62tCjDoENbmaAKVE4TmCE", 
         "gid": "840129368"
-    },
-    "惇裕小學": {
-        "id": "1uqDMMCinyvsSdXAYE1Dh0EZ36qVvrzhKftNHf_-vw7w", 
-        "gid": "997998162"
     }
 }
 
@@ -41,10 +41,10 @@ GID = config[school]["gid"]
 
 st.title(f"🏫 {school} - 報更即時看板")
 
-# 使用動態時間戳 t 參數，強迫 Google 每次都生成最新的 CSV 資料
+# 使用動態時間戳 t 參數，強迫 Google 每次都生成最新的 CSV 資料，實現自行更新
 csv_url = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid={GID}&t={int(time.time())}"
 
-@st.cache_data(ttl=5) # 5 秒快取過期，實現近乎實時的自行更新
+@st.cache_data(ttl=5) # 5 秒快取過期，實現近乎實時的更新
 def load_data(url):
     return pd.read_csv(url)
 
