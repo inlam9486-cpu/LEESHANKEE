@@ -8,7 +8,7 @@ st.set_page_config(page_title="全港小學導師報更管理系統", layout="wi
 # --- 側邊欄：管理選單 ---
 st.sidebar.header("🏫 系統管理")
 
-# 強制重新讀取按鈕（點擊可直接繞過快取、強制抓最新表單資料）
+# 強制重新讀取按鈕
 if st.sidebar.button("🔄 立即同步最新資料"):
     st.cache_data.clear()
     st.rerun()
@@ -16,11 +16,11 @@ if st.sidebar.button("🔄 立即同步最新資料"):
 # 選擇學校選單
 school = st.sidebar.selectbox("請選擇學校", ["惇裕小學", "培恩小學", "李兆基小學", "寶覺小學"])
 
-# 2. 學校資料庫 (已完全整合你提供的所有最新獨立連結)
+# 2. 學校資料庫 (完全整合你提供的所有最新獨立連結與精確 GID)
 config = {
     "惇裕小學": {
         "id": "19vimBn6Zw2dRod0Do5vCTYgjM8G0GL_HS5fYmfz_Q5Y", 
-        "gid": "0"
+        "gid": "87201705"  # 修正為新表單回應頁籤的精確 GID
     },
     "培恩小學": {
         "id": "1GvoiEZ2Qk-To9rojnjxVNHvF9wdxT386yVa-KD1v0oI", 
